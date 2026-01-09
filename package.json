@@ -1,0 +1,28 @@
+{
+    "name": "motionflow",
+    "version": "1.0.0",
+    "description": "MotionFlow is a free, lightweight JavaScript library for modern web motion — scroll animations, parallax, text effects, counters, and tickers using simple HTML attributes.",
+    "main": "dist/motionflow.js",
+    "style": "dist/motionflow.css",
+    "files": [
+      "dist",
+      "README.md",
+      "LICENSE"
+    ],
+    "keywords": [
+      "scroll animation",
+      "parallax",
+      "text effects",
+      "counter",
+      "roller",
+      "ticker",
+      "animation"
+    ],
+    "author": "Deepak Verma",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/slicemypage/motionflow"
+    }
+  }
+  

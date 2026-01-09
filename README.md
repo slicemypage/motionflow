@@ -1,2 +1,4 @@
 # motionflow
-A lightweight JavaScript library for scroll animations and parallax effects — simple, fast, and dependency-free.
+MotionFlow is a free, lightweight JavaScript library for modern web motion — scroll animations, parallax, text effects, counters, and tickers using simple HTML attributes.
+
+👉 Documentation: https://motionflow.dev

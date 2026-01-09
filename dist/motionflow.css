@@ -1,0 +1,1274 @@
+ /*!
+ * MotionFlow v1.0.0
+ * Lightweight motion library for scroll animations, parallax, text effects, counters, and tickers
+ * https://motionflow.dev
+ *
+ * Copyright (c) 2026 Deepak Verma
+ *
+ * Released under the MIT License
+ */
+ 
+ /* ===================================================================
+   MOTIONFLOW architecture
+   Each animation has: 
+   - Initial state  (.mf-init)
+   - Final state    (.mf-animate)
+=================================================================== */
+
+/* --------------------------------------------
+   All elements start invisible until animated
+-------------------------------------------- */
+.mf-init[data-mf-animation],
+[data-mf-animation]:not(.mf-animate) {
+  opacity: 0; 
+}
+
+ 
+/* ===================================================================
+   FADE ANIMATIONS
+=================================================================== */
+
+/* -------------------------------------------------
+   fade
+------------------------------------------------- */
+[data-mf-animation="fade"].mf-animate {
+  animation: mf-fade var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+
+@keyframes mf-fade {
+  from { 
+    opacity:0; 
+  }
+  to { 
+    opacity: 1; 
+  }
+}
+
+ 
+
+/* -------------------------------------------------
+   fade-up
+------------------------------------------------- */
+[data-mf-animation="fade-up"].mf-animate {
+  animation: mf-fade-up var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+
+@keyframes mf-fade-up {
+  from { 
+    opacity:0;
+    transform: translateY(var(--mf-distance));
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* -------------------------------------------------
+   fade-down
+------------------------------------------------- */
+[data-mf-animation="fade-down"].mf-animate {
+  animation: mf-fade-down var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+
+@keyframes mf-fade-down {
+  from { 
+    opacity:0;
+    transform: translateY(calc(var(--mf-distance) * -1));
+  }
+  to { 
+    opacity:1;
+    transform: translateY(0);
+  }
+}
+
+/* -------------------------------------------------
+   fade-left
+------------------------------------------------- */
+[data-mf-animation="fade-left"].mf-animate {
+  animation: mf-fade-left var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+
+@keyframes mf-fade-left {
+  from { 
+    opacity:0;
+    transform: translateX(calc(var(--mf-distance) * -1));
+  }
+  to { 
+    opacity:1;
+    transform: translateX(0);
+  }
+}
+
+/* -------------------------------------------------
+   fade-right
+------------------------------------------------- */
+[data-mf-animation="fade-right"].mf-animate {
+  animation: mf-fade-right var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+
+@keyframes mf-fade-right {
+  from { 
+    opacity:0;
+    transform: translateX(var(--mf-distance));
+  }
+  to { 
+    opacity:1;
+    transform: translateX(0);
+  }
+}
+
+/* -------------------------------------------------
+   fade-up-left
+------------------------------------------------- */
+[data-mf-animation="fade-up-left"].mf-animate {
+  animation: mf-fade-up-left var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+
+@keyframes mf-fade-up-left {
+  from { 
+    opacity:0;
+    transform: translate(
+      calc(var(--mf-distance) * -1),
+      var(--mf-distance)
+    );
+  }
+  to { 
+    opacity:1;
+    transform: translate(0, 0);
+  }
+}
+
+/* -------------------------------------------------
+   fade-up-right
+------------------------------------------------- */
+[data-mf-animation="fade-up-right"].mf-animate {
+  animation: mf-fade-up-right var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+
+@keyframes mf-fade-up-right {
+  from { 
+    opacity:0;
+    transform: translate(
+      var(--mf-distance),
+      var(--mf-distance)
+    );
+  }
+  to { 
+    opacity:1;
+    transform: translate(0, 0);
+  }
+}
+
+/* -------------------------------------------------
+   fade-down-left
+------------------------------------------------- */
+[data-mf-animation="fade-down-left"].mf-animate {
+  animation: mf-fade-down-left var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+
+@keyframes mf-fade-down-left {
+  from { 
+    opacity:0;
+    transform: translate(
+      calc(var(--mf-distance) * -1),
+      calc(var(--mf-distance) * -1)
+    );
+  }
+  to { 
+    opacity:1;
+    transform: translate(0, 0);
+  }
+}
+
+/* -------------------------------------------------
+   fade-down-right
+------------------------------------------------- */
+[data-mf-animation="fade-down-right"].mf-animate {
+  animation: mf-fade-down-right var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+
+@keyframes mf-fade-down-right {
+  from { 
+    opacity:0;
+    transform: translate(
+      var(--mf-distance),
+      calc(var(--mf-distance) * -1)
+    );
+  }
+  to { 
+    opacity:1;
+    transform: translate(0, 0);
+  }
+}
+
+
+/* ===================================================================
+   SLIDE ANIMATIONS
+=================================================================== */
+
+/* -------------------------------------------------
+   slide-up
+------------------------------------------------- */
+[data-mf-animation="slide-up"].mf-animate {
+  animation: mf-slide-up var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+
+@keyframes mf-slide-up {
+  from {
+    opacity:0;
+    transform: translateY(var(--mf-distance));
+  }
+  to {
+    opacity:1;
+    transform: translateY(0);
+  }
+}
+
+/* -------------------------------------------------
+   slide-down
+------------------------------------------------- */
+[data-mf-animation="slide-down"].mf-animate {
+  animation: mf-slide-down var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+
+@keyframes mf-slide-down {
+  from {
+    opacity:0;
+    transform: translateY(calc(var(--mf-distance) * -1));
+  }
+  to {
+    opacity:1;
+    transform: translateY(0);
+  }
+}
+
+/* -------------------------------------------------
+   slide-left
+------------------------------------------------- */
+[data-mf-animation="slide-left"].mf-animate {
+  animation: mf-slide-left var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+
+@keyframes mf-slide-left {
+  from {
+    opacity:0;
+    transform: translateX(calc(var(--mf-distance) * -1));
+  }
+  to {
+    opacity:1;
+    transform: translateX(0);
+  }
+}
+
+/* -------------------------------------------------
+   slide-right
+------------------------------------------------- */
+[data-mf-animation="slide-right"].mf-animate {
+  animation: mf-slide-right var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+
+@keyframes mf-slide-right {
+  from {
+    opacity:0;
+    transform: translateX(var(--mf-distance));
+  }
+  to {
+    opacity:1;
+    transform: translateX(0);
+  }
+}
+
+
+
+/* ===================================================================
+   ZOOM ANIMATIONS
+=================================================================== */
+ 
+/* -------------------------------------------------
+   zoom-in
+------------------------------------------------- */
+[data-mf-animation="zoom-in"].mf-animate {
+  animation: mf-zoom-in var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+
+@keyframes mf-zoom-in {
+  from {
+    opacity:0;
+    transform: scale(.8);
+  }
+  to {
+    opacity:1;
+    transform: scale(1);
+  }
+}
+
+/* -------------------------------------------------
+   zoom-out
+------------------------------------------------- */
+[data-mf-animation="zoom-out"].mf-animate {
+  animation: mf-zoom-out var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+
+@keyframes mf-zoom-out {
+  from {
+    opacity:0;
+    transform: scale(1.2);
+  }
+  to {
+    opacity:1;
+    transform: scale(1);
+  }
+}
+
+/* -------------------------------------------------
+   zoom-in-up
+------------------------------------------------- */
+[data-mf-animation="zoom-in-up"].mf-animate {
+  animation: mf-zoom-in-up var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+
+@keyframes mf-zoom-in-up {
+  from {
+    opacity:0;
+    transform: translateY(var(--mf-distance)) scale(.8);
+  }
+  to {
+    opacity:1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* -------------------------------------------------
+   zoom-in-down
+------------------------------------------------- */
+[data-mf-animation="zoom-in-down"].mf-animate {
+  animation: mf-zoom-in-down var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+
+@keyframes mf-zoom-in-down {
+  from {
+    opacity:0;
+    transform: translateY(calc(var(--mf-distance) * -1)) scale(.8);
+  }
+  to {
+    opacity:1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* -------------------------------------------------
+   zoom-in-left
+------------------------------------------------- */
+[data-mf-animation="zoom-in-left"].mf-animate {
+  animation: mf-zoom-in-left var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+
+@keyframes mf-zoom-in-left {
+  from {
+    opacity:0;
+    transform: translateX(calc(var(--mf-distance) * -1)) scale(.8);
+  }
+  to {
+    opacity:1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* -------------------------------------------------
+   zoom-in-right
+------------------------------------------------- */
+[data-mf-animation="zoom-in-right"].mf-animate {
+  animation: mf-zoom-in-right var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+
+@keyframes mf-zoom-in-right {
+  from {
+    opacity:0;
+    transform: translateX(var(--mf-distance)) scale(.8);
+  }
+  to {
+    opacity:1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* -------------------------------------------------
+   zoom-out-up
+------------------------------------------------- */
+[data-mf-animation="zoom-out-up"].mf-animate {
+  animation: mf-zoom-out-up var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+
+@keyframes mf-zoom-out-up {
+  from {
+    opacity:0;
+    transform: translateY(var(--mf-distance)) scale(1.2);
+  }
+  to {
+    opacity:1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* -------------------------------------------------
+   zoom-out-down
+------------------------------------------------- */
+[data-mf-animation="zoom-out-down"].mf-animate {
+  animation: mf-zoom-out-down var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+
+@keyframes mf-zoom-out-down {
+  from {
+    opacity:0;
+    transform: translateY(calc(var(--mf-distance) * -1)) scale(1.2);
+  }
+  to {
+    opacity:1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* -------------------------------------------------
+   zoom-out-left
+------------------------------------------------- */
+[data-mf-animation="zoom-out-left"].mf-animate {
+  animation: mf-zoom-out-left var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+
+@keyframes mf-zoom-out-left {
+  from {
+    opacity:0;
+    transform: translateX(calc(var(--mf-distance) * -1)) scale(1.2);
+  }
+  to {
+    opacity:1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* -------------------------------------------------
+   zoom-out-right
+------------------------------------------------- */
+[data-mf-animation="zoom-out-right"].mf-animate {
+  animation: mf-zoom-out-right var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+
+@keyframes mf-zoom-out-right {
+  from {
+    opacity:0;
+    transform: translateX(var(--mf-distance)) scale(1.2);
+  }
+  to {
+    opacity:1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* ===================================================================
+   FLIP ANIMATIONS — KEYFRAME BASED
+=================================================================== */
+
+/* -------------------------------------------------
+   Flip base (3D stability)
+------------------------------------------------- */
+[data-mf-animation^="flip"] {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* -------------------------------------------------
+   flip-up
+------------------------------------------------- */
+[data-mf-animation="flip-up"].mf-animate {
+  animation: mf-flip-up var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+@keyframes mf-flip-up {
+  from { opacity:0; transform: perspective(2500px) rotateX(-100deg); }
+  to   { opacity:1; transform: perspective(2500px) rotateX(0); }
+}
+
+/* -------------------------------------------------
+   flip-down
+------------------------------------------------- */
+[data-mf-animation="flip-down"].mf-animate {
+  animation: mf-flip-down var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+@keyframes mf-flip-down {
+  from { opacity:0; transform: perspective(2500px) rotateX(100deg); }
+  to   { opacity:1; transform: perspective(2500px) rotateX(0); }
+}
+
+/* -------------------------------------------------
+   flip-left
+------------------------------------------------- */
+[data-mf-animation="flip-left"].mf-animate {
+  animation: mf-flip-left var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+@keyframes mf-flip-left {
+  from { opacity:0; transform: perspective(2500px) rotateY(-100deg); }
+  to   { opacity:1; transform: perspective(2500px) rotateY(0); }
+}
+
+/* -------------------------------------------------
+   flip-right
+------------------------------------------------- */
+[data-mf-animation="flip-right"].mf-animate {
+  animation: mf-flip-right var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+@keyframes mf-flip-right {
+  from { opacity:0; transform: perspective(2500px) rotateY(100deg); }
+  to   { opacity:1; transform: perspective(2500px) rotateY(0); }
+}
+
+
+/* ===================================================================
+   ROTATE ANIMATIONS — KEYFRAME BASED
+=================================================================== */
+
+/* -------------------------------------------------
+   rotate (simple)
+------------------------------------------------- */
+[data-mf-animation="rotate"].mf-animate {
+  animation: mf-rotate var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+@keyframes mf-rotate {
+  from { opacity:0; transform: rotate(45deg); }
+  to   { opacity:1; transform: rotate(0); }
+}
+
+/* -------------------------------------------------
+   rotate-up-left
+------------------------------------------------- */
+[data-mf-animation="rotate-up-left"].mf-animate {
+  animation: mf-rotate-up-left var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+@keyframes mf-rotate-up-left {
+  from { opacity:0; transform: rotate(-45deg) translateY(var(--mf-distance)); }
+  to   { opacity:1; transform: rotate(0) translateY(0); }
+}
+
+/* -------------------------------------------------
+   rotate-up-right
+------------------------------------------------- */
+[data-mf-animation="rotate-up-right"].mf-animate {
+  animation: mf-rotate-up-right var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+@keyframes mf-rotate-up-right {
+  from { opacity:0; transform: rotate(45deg) translateY(var(--mf-distance)); }
+  to   { opacity:1; transform: rotate(0) translateY(0); }
+}
+
+/* -------------------------------------------------
+   rotate-down-left
+------------------------------------------------- */
+[data-mf-animation="rotate-down-left"].mf-animate {
+  animation: mf-rotate-down-left var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+@keyframes mf-rotate-down-left {
+  from { opacity:0; transform: rotate(45deg) translateY(calc(var(--mf-distance) * -1)); }
+  to   { opacity:1; transform: rotate(0) translateY(0); }
+}
+
+/* -------------------------------------------------
+   rotate-down-right
+------------------------------------------------- */
+[data-mf-animation="rotate-down-right"].mf-animate {
+  animation: mf-rotate-down-right var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+@keyframes mf-rotate-down-right {
+  from { opacity:0; transform: rotate(-45deg) translateY(calc(var(--mf-distance) * -1)); }
+  to   { opacity:1; transform: rotate(0) translateY(0); }
+}
+/* ===================================================================
+   LIGHTSPEED ANIMATIONS — KEYFRAME BASED
+=================================================================== */
+
+/* -------------------------------------------------
+   lightspeed-left
+------------------------------------------------- */
+[data-mf-animation="lightspeed-left"].mf-animate {
+  animation: mf-lightspeed-left var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+ 
+@keyframes mf-lightspeed-left {
+  from { opacity: 0; transform: translateX(calc(-100% - var(--mf-distance))) skewX(20deg); }
+  to {opacity: 1; transform: translateX(0) skewX(0);}
+}
+
+
+/* -------------------------------------------------
+   lightspeed-right
+------------------------------------------------- */
+[data-mf-animation="lightspeed-right"].mf-animate {
+  animation: mf-lightspeed-right var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+@keyframes mf-lightspeed-right {
+  from { opacity:0; transform: translateX(calc(100% + var(--mf-distance))) skewX(-20deg); }
+  to   { opacity:1; transform: translateX(0) skewX(0); }
+}
+
+
+
+/* ===================================================================
+   ROLL ANIMATIONS — KEYFRAME BASED
+=================================================================== */
+
+/* -------------------------------------------------
+   roll-left
+------------------------------------------------- */
+[data-mf-animation="roll-left"].mf-animate {
+  animation: mf-roll-left var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+@keyframes mf-roll-left {
+  from { opacity:0; transform: translateX(calc(var(--mf-distance) * -1)) rotate(-180deg); }
+  to   { opacity:1; transform: translateX(0) rotate(0); }
+}
+
+/* -------------------------------------------------
+   roll-right
+------------------------------------------------- */
+[data-mf-animation="roll-right"].mf-animate {
+  animation: mf-roll-right var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+@keyframes mf-roll-right {
+  from { opacity:0; transform: translateX(var(--mf-distance)) rotate(180deg); }
+  to   { opacity:1; transform: translateX(0) rotate(0); }
+}
+  
+/* ===================================================================
+   BACK-IN ANIMATIONS — KEYFRAME BASED (SEQUENCED)
+   Step 1: translate into place (scale stays .7)
+   Step 2: scale to 1
+=================================================================== */
+
+/* -------------------------------------------------
+   back-in-up
+------------------------------------------------- */
+[data-mf-animation="back-in-up"].mf-animate {
+  animation: mf-back-in-up var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+@keyframes mf-back-in-up {
+  0%   { opacity:0; transform: translateY(var(--mf-distance)) scale(.7); }
+  70%  { opacity:1; transform: translateY(0) scale(.7); }
+  100% { opacity:1; transform: translateY(0) scale(1); }
+}
+
+/* -------------------------------------------------
+   back-in-down
+------------------------------------------------- */
+[data-mf-animation="back-in-down"].mf-animate {
+  animation: mf-back-in-down var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+@keyframes mf-back-in-down {
+  0%   { opacity:0; transform: translateY(calc(var(--mf-distance) * -1)) scale(.7); }
+  70%  { opacity:1; transform: translateY(0) scale(.7); }
+  100% { opacity:1; transform: translateY(0) scale(1); }
+}
+
+/* -------------------------------------------------
+   back-in-left
+------------------------------------------------- */
+[data-mf-animation="back-in-left"].mf-animate {
+  animation: mf-back-in-left var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+@keyframes mf-back-in-left {
+  0%   { opacity:0; transform: translateX(calc(var(--mf-distance) * -1)) scale(.7); }
+  70%  { opacity:1; transform: translateX(0) scale(.7); }
+  100% { opacity:1; transform: translateX(0) scale(1); }
+}
+
+/* -------------------------------------------------
+   back-in-right
+------------------------------------------------- */
+[data-mf-animation="back-in-right"].mf-animate {
+  animation: mf-back-in-right var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+@keyframes mf-back-in-right {
+  0%   { opacity:0; transform: translateX(var(--mf-distance)) scale(.7); }
+  70%  { opacity:1; transform: translateX(0) scale(.7); }
+  100% { opacity:1; transform: translateX(0) scale(1); }
+}
+
+
+ /* ===================================================================
+   BLUR ANIMATIONS — KEYFRAME BASED
+=================================================================== */
+[data-mf-animation^="blur"] {
+  will-change: transform, opacity, filter;
+}
+/* -------------------------------------------------
+   blur (no movement)
+------------------------------------------------- */
+[data-mf-animation="blur"].mf-animate {
+  animation: mf-blur var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+@keyframes mf-blur {
+  from { opacity:0; filter: blur(12px); }
+  to   { opacity:1; filter: blur(0); }
+}
+
+/* -------------------------------------------------
+   blur-up
+------------------------------------------------- */
+[data-mf-animation="blur-up"].mf-animate {
+  animation: mf-blur-up var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+@keyframes mf-blur-up {
+  from { opacity:0; transform: translateY(var(--mf-distance)); filter: blur(12px); }
+  to   { opacity:1; transform: translateY(0); filter: blur(0); }
+}
+
+/* -------------------------------------------------
+   blur-down
+------------------------------------------------- */
+[data-mf-animation="blur-down"].mf-animate {
+  animation: mf-blur-down var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+@keyframes mf-blur-down {
+  from { opacity:0; transform: translateY(calc(var(--mf-distance) * -1)); filter: blur(12px); }
+  to   { opacity:1; transform: translateY(0); filter: blur(0); }
+}
+
+/* -------------------------------------------------
+   blur-left
+------------------------------------------------- */
+[data-mf-animation="blur-left"].mf-animate {
+  animation: mf-blur-left var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+@keyframes mf-blur-left {
+  from { opacity:0; transform: translateX(calc(var(--mf-distance) * -1)); filter: blur(12px); }
+  to   { opacity:1; transform: translateX(0); filter: blur(0); }
+}
+
+/* -------------------------------------------------
+   blur-right
+------------------------------------------------- */
+[data-mf-animation="blur-right"].mf-animate {
+  animation: mf-blur-right var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+@keyframes mf-blur-right {
+  from { opacity:0; transform: translateX(var(--mf-distance)); filter: blur(12px); }
+  to   { opacity:1; transform: translateX(0); filter: blur(0); }
+}
+
+
+
+/* ===================================================================
+   HINGE ANIMATIONS — KEYFRAME BASED
+=================================================================== */
+
+/* -------------------------------------------------
+   hinge (default)
+------------------------------------------------- */
+[data-mf-animation="hinge"] {
+  transform-origin: top center;
+}
+[data-mf-animation="hinge"].mf-animate {
+  animation: mf-hinge var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+@keyframes mf-hinge {
+  0%  { opacity:0; transform: rotate(70deg); }
+  18% { opacity:1; transform: rotate(-20deg); }
+  35% { opacity:1; transform: rotate(22deg); }
+  52% { opacity:1; transform: rotate(-12deg); }
+  68% { opacity:1; transform: rotate(6deg); }
+  82% { opacity:1; transform: rotate(-3deg); }
+  100%{ opacity:1; transform: rotate(0deg); }
+}
+
+/* -------------------------------------------------
+   hinge-left
+------------------------------------------------- */
+[data-mf-animation="hinge-left"] {
+  transform-origin: left top;
+}
+[data-mf-animation="hinge-left"].mf-animate {
+  animation: mf-hinge-left var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+@keyframes mf-hinge-left {
+  0%  { opacity:0; transform: rotate(70deg); }
+  18% { opacity:1; transform: rotate(-20deg); }
+  35% { opacity:1; transform: rotate(22deg); }
+  52% { opacity:1; transform: rotate(-12deg); }
+  68% { opacity:1; transform: rotate(6deg); }
+  82% { opacity:1; transform: rotate(-3deg); }
+  100%{ opacity:1; transform: rotate(0deg); }
+}
+
+/* -------------------------------------------------
+   hinge-right
+------------------------------------------------- */
+[data-mf-animation="hinge-right"] {
+  transform-origin: right top;
+}
+[data-mf-animation="hinge-right"].mf-animate {
+  animation: mf-hinge-right var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+@keyframes mf-hinge-right {
+  0%  { opacity:0; transform: rotate(-70deg); }
+  18% { opacity:1; transform: rotate(20deg); }
+  35% { opacity:1; transform: rotate(-22deg); }
+  52% { opacity:1; transform: rotate(12deg); }
+  68% { opacity:1; transform: rotate(-6deg); }
+  82% { opacity:1; transform: rotate(3deg); }
+  100%{ opacity:1; transform: rotate(0deg); }
+}
+
+
+/* ===================================================================
+   BOUNCE ANIMATIONS — KEYFRAME BASED
+=================================================================== */
+
+/* -------------------------------------------------
+   bounce (default)
+------------------------------------------------- */
+[data-mf-animation="bounce"].mf-animate {
+  animation: mf-bounce var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+@keyframes mf-bounce {
+  0% {
+    opacity: 0;
+    transform: translateY(calc(var(--mf-distance) * -1));
+  }
+
+  55% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateY(calc(var(--mf-distance) * -0.18));
+  }
+
+  82% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  92% {
+    opacity: 1;
+    transform: translateY(calc(var(--mf-distance) * -0.06));
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* -------------------------------------------------
+   bounce-up
+------------------------------------------------- */
+[data-mf-animation="bounce-up"].mf-animate {
+  animation: mf-bounce-up var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+  
+
+@keyframes mf-bounce-up {
+  0% {
+    opacity: 0;
+    transform: translateY(calc(var(--mf-distance) * 1));
+  }
+
+  55% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateY(calc(var(--mf-distance) * 0.18));
+  }
+
+  82% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  92% {
+    opacity: 1;
+    transform: translateY(calc(var(--mf-distance) * 0.06));
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* -------------------------------------------------
+   bounce-down
+------------------------------------------------- */
+[data-mf-animation="bounce-down"].mf-animate {
+  animation: mf-bounce-down var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+ 
+
+@keyframes mf-bounce-down {
+  0% {
+    opacity: 0;
+    transform: translateY(calc(var(--mf-distance) * -1));
+  }
+
+  55% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateY(calc(var(--mf-distance) * -0.18));
+  }
+
+  82% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  92% {
+    opacity: 1;
+    transform: translateY(calc(var(--mf-distance) * -0.06));
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* -------------------------------------------------
+   bounce-left
+------------------------------------------------- */
+[data-mf-animation="bounce-left"].mf-animate {
+  animation: mf-bounce-left var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+
+@keyframes mf-bounce-left {
+  0% {
+    opacity: 0;
+    transform: translateX(calc(var(--mf-distance) * -1));
+  }
+
+  55% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateX(calc(var(--mf-distance) * -0.18));
+  }
+
+  82% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  92% {
+    opacity: 1;
+    transform: translateX(calc(var(--mf-distance) * -0.06));
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* -------------------------------------------------
+   bounce-right
+------------------------------------------------- */
+[data-mf-animation="bounce-right"].mf-animate {
+  animation: mf-bounce-right var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+@keyframes mf-bounce-right {
+  0% {
+    opacity: 0;
+    transform: translateX(calc(var(--mf-distance) * 1));
+  }
+
+  55% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateX(calc(var(--mf-distance) * 0.18));
+  }
+
+  82% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  92% {
+    opacity: 1;
+    transform: translateX(calc(var(--mf-distance) * 0.06));
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+ 
+
+/* -------------------------------------------------
+   bounce-scale
+------------------------------------------------- */
+[data-mf-animation="bounce-scale"].mf-animate {
+  animation: mf-bounce-scale var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+
+@keyframes mf-bounce-scale {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+
+  55% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  70% {
+    opacity: 1;
+    transform: scale(0.95);
+  }
+
+  85% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+
+
+/* -------------------------------------------------
+   bounce-rotate
+------------------------------------------------- */
+[data-mf-animation="bounce-rotate"].mf-animate {
+  animation: mf-bounce-rotate var(--mf-duration) var(--mf-easing) var(--mf-delay) forwards;
+}
+
+@keyframes mf-bounce-rotate {
+  0% {
+    opacity: 0;
+    transform: translateY(calc(var(--mf-distance) * -1.4)) rotate(-12deg);
+  }
+
+  55% {
+    opacity: 1;
+    transform: translateY(0) rotate(6deg);
+  }
+
+  72% {
+    opacity: 1;
+    transform: translateY(calc(var(--mf-distance) * -0.18)) rotate(-4deg);
+  }
+
+  85% {
+    opacity: 1;
+    transform: translateY(0) rotate(3deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+  }
+}
+
+
+
+/* ==============================
+   MotionFlow Roller Counter
+============================== */
+
+.mf-roller {
+  display: inline-flex;
+  line-height: 1;
+}
+
+.mf-roller-digit {
+  position: relative;
+  height: 1em;
+  overflow: hidden;
+}
+
+.mf-roller-digit-inner {
+  transform: translateY(0);
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  will-change: transform;
+}
+
+.mf-roller-digit-inner span {
+  height: 1em;
+  display: block;
+  text-align: center;
+  
+}
+ 
+
+
+/* ==============================
+   MotionFlow Ticker
+============================== */ 
+
+/* viewport clipping */
+.mf-ticker-viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+/* moving track */ 
+.mf-ticker-track {
+  display: flex;
+  flex-wrap: nowrap;
+  will-change: transform;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+
+/* content unit */
+.mf-ticker-content {
+  display: flex;
+  flex-shrink: 0;
+}
+
+/* image fix (important) */
+.mf-ticker-content img {
+  max-width: none;
+  display: block;
+}
+
+/* =====================================================
+   MotionFlow Text 
+===================================================== */
+ 
+
+/* =====================================================
+   Typing Cursor
+===================================================== */
+
+.mf-typing-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  animation: mf-blink 1s steps(1) infinite;
+}
+
+.mf-typing-cursor-static {
+  animation: none;
+}
+
+@keyframes mf-blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+
+
+/* Screen-reader only text */
+.mf-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+
+
+/* ===================================================================
+   MotionFlow — Accessibility: Reduced Motion Support
+   Respects user OS-level "Reduce Motion" preference
+=================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  /* ---------------------------------------------------
+     1. Scroll / Text Animations
+  --------------------------------------------------- */
+
+  [data-mf-animation],
+  [data-mf-animation].mf-animate {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+
+  /* ---------------------------------------------------
+     2. Parallax
+  --------------------------------------------------- */
+
+  [data-mf-parallax] {
+    transform: none !important;
+    will-change: auto !important;
+  }
+
+  /* ---------------------------------------------------
+     3. Text Loop
+     (show first word only, no animation)
+  --------------------------------------------------- */
+
+  [data-mf-text-type="loop"] > span {
+    display: none !important;
+  }
+
+  [data-mf-text-type="loop"] > span:first-child {
+    display: inline-block !important;
+  }
+
+  /* ---------------------------------------------------
+     4. Typing Text
+     (disable typing animation, show full text)
+  --------------------------------------------------- */
+
+  [data-mf-text-type="typing"] {
+    animation: none !important;
+  }
+
+  [data-mf-text-type="typing"] .mf-typing-cursor {
+    display: none !important;
+  }
+
+  /* ---------------------------------------------------
+     5. Ticker
+     (freeze content in place)
+  --------------------------------------------------- */
+
+  [data-mf-ticker],
+  .mf-ticker-track {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  /* ---------------------------------------------------
+     6. Counters / Roller
+     (show final values immediately)
+  --------------------------------------------------- */
+
+  [data-mf-count-to],
+  [data-mf-roller-to] {
+    animation: none !important;
+    transition: none !important;
+  }
+}
