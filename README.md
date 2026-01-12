@@ -98,7 +98,7 @@ MotionFlow.init();
 
 Download the latest build and include it directly:
 
-👉 https://motionflow.dev/downloads
+👉 https://motionflow.dev/docs/installation
 
 Best for **WordPress**, **static HTML**, and **CMS-based projects**.
 
